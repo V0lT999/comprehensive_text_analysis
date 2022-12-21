@@ -4,7 +4,7 @@ from kafka import KafkaProducer
 from generate_text import generate_text
 
 TOPIC = 'translation_topic'
-TIME_SLEEP = 1
+TIME_SLEEP = 3
 
 
 producer = KafkaProducer(

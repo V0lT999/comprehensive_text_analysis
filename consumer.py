@@ -1,4 +1,6 @@
 from kafka import KafkaConsumer
+from translator import translate
+from translation_producer import send_translation
 
 TOPIC = 'translation_topic'
 
@@ -12,7 +14,10 @@ consumer = KafkaConsumer(
 
 def get_text():
     for msg in consumer:
-        print(msg.value.decode('utf'))
+        text = msg.value.decode('utf-8')
+        translation = translate(text)
+        send_translation(text=text, translation=translation)
+        print(f'sent text: {text}')
 
 
 if __name__ == '__main__':

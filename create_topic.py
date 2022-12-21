@@ -7,11 +7,12 @@ admin_client = KafkaAdminClient(
 )
 
 
-def create_topic():
+def create_topics():
     topic_list = list()
-    topic_list.append(NewTopic(name="translation_topic", num_partitions=1, replication_factor=1))
+    topic_list.append(NewTopic(name='translation_topic', num_partitions=3, replication_factor=1))
+    topic_list.append(NewTopic(name='result_topic', num_partitions=1, replication_factor=1))
     admin_client.create_topics(new_topics=topic_list, validate_only=False)
 
 
 if __name__ == "__main__":
-    create_topic()
+    create_topics()
